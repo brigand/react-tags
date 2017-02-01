@@ -1,5 +1,7 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = require('react');
@@ -109,6 +111,7 @@ var ReactTags = _react2.default.createClass({
     }
 
     return suggestions.filter(function (item) {
+      if ((typeof item === 'undefined' ? 'undefined' : _typeof(item)) === 'object') item = item.text;
       return item.toLowerCase().indexOf(query.toLowerCase()) === 0;
     });
   },
@@ -150,10 +153,10 @@ var ReactTags = _react2.default.createClass({
     }
   },
   handleKeyDown: function handleKeyDown(e) {
-    var _state = this.state;
-    var query = _state.query;
-    var selectedIndex = _state.selectedIndex;
-    var suggestions = _state.suggestions;
+    var _state = this.state,
+        query = _state.query,
+        selectedIndex = _state.selectedIndex,
+        suggestions = _state.suggestions;
 
     // hide suggestions menu on escape
 
